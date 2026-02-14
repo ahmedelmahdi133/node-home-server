@@ -1,0 +1,10 @@
+services:
+  node-app:
+    build: .
+    volumes:
+      - ./src:/app/src:ro
+    environment:
+      - NODE_ENV=development  
+      - CHOKIDAR_USEPOLLING=true
+    command: npx nodemon src/index.js  
+      
