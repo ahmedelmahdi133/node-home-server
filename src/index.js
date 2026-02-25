@@ -72,6 +72,15 @@ app.get('/', (req, res) => {
 app.get("/ahmed", (req, res) => {
   res.send("Hello Ahmed!");
 });
+app.get('/postgres-test', async (req, res) => {
+  try {
+    const result = await postgres_client.query('SELECT NOW()');
+    res.send(`Current time from PostgreSQL: ${result.rows[0].now}`);
+  } catch (error) {
+    console.error('Error querying PostgreSQL:', error);
+    res.status(500).send('Error querying PostgreSQL');
+  } 
+});
 app.get('/postgres', async (req, res) => {
   try {
     const result = await postgres_client.query('SELECT NOW()');
